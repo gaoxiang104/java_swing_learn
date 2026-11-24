@@ -8,8 +8,8 @@ import java.awt.*;
 /**
  * 边界布局
  */
-public class BroderLayout1 extends JFrame {
-    public BroderLayout1() {
+public class BorderLayout1 extends JFrame {
+    public BorderLayout1() {
         add(BorderLayout.NORTH, new JButton("North"));
         add(BorderLayout.SOUTH, new JButton("South"));
         add(BorderLayout.EAST, new JButton("East"));
@@ -18,6 +18,6 @@ public class BroderLayout1 extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingConsole.run(new BroderLayout1(), 300, 250);
+        SwingConsole.run(new BorderLayout1(), 300, 250);
     }
 }

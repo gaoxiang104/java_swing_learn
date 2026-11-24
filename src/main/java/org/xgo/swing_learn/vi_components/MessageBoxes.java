@@ -1,0 +1,74 @@
+package org.xgo.swing_learn.vi_components;
+
+import org.xgo.swing_learn.common.SwingConsole;
+
+import javax.swing.*;
+import java.awt.*;
+
+/**
+ * 消息框
+ */
+public class MessageBoxes extends JFrame {
+    private JButton[] b = {
+            new JButton("Alert"), new JButton("Yes/No"),
+            new JButton("Color"), new JButton("Input"),
+            new JButton("3 Vals"),
+    };
+
+    private JTextField txt = new JTextField(15);
+
+    public MessageBoxes() {
+        setLayout(new FlowLayout());
+
+        for (int i = 0; i < b.length; i++) {
+            b[i].addActionListener(e -> {
+                String id = ((JButton) e.getSource()).getText();
+                switch (id) {
+                    case "Alert":
+                        JOptionPane.showMessageDialog(null,
+                                "There's a bug on you!", "Hey!", JOptionPane.ERROR_MESSAGE);
+                        break;
+                    case "Yes/No":
+                        JOptionPane.showConfirmDialog(null,
+                                "or no", "choose yes", JOptionPane.YES_NO_OPTION);
+                        break;
+                    case "Color":
+                        Object[] options = {"Red", "Green", "Blue"};
+                        int sel = JOptionPane.showOptionDialog(null,
+                                "Choose a Color!",
+                                "Warning",
+                                JOptionPane.DEFAULT_OPTION,
+                                JOptionPane.WARNING_MESSAGE,
+                                null,
+                                options,
+                                options[0]
+                        );
+                        if (sel != JOptionPane.CLOSED_OPTION) {
+                            txt.setText("Color Selected: " + options[sel]);
+                        }
+                        break;
+                    case "Input":
+                        String val = JOptionPane.showInputDialog("How many fingers do you see?");
+                        txt.setText(val);
+                        break;
+                    case "3 Vals":
+                        Object[] selections = {"First", "Second", "Third", "Fourth"};
+                        Object val1 = JOptionPane.showInputDialog(
+                                null, "Choose one", "Input",
+                                JOptionPane.INFORMATION_MESSAGE, null, selections, selections[0]
+                        );
+                        if (val1 != null) {
+                            txt.setText(val1.toString());
+                        }
+                        break;
+                }
+            });
+            add(b[i]);
+        }
+        add(txt);
+    }
+
+    public static void main(String[] args) {
+        SwingConsole.run(new MessageBoxes(), 200, 200);
+    }
+}
